@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 
+const AnchorTo = (p: any) => {
+  console.log(p);
+  return <a href={"/"}>{p.value}</a>;
+};
+
 interface IRow {
   dt: string;
   winning_bid_max: number;
@@ -16,7 +21,7 @@ interface IRow {
 const DistilleriesInfo = () => {
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [colDefs, setColDefs] = useState<ColDef[]>([
-    { headerName: "Distillery Name", field: "name" },
+    { headerName: "Distillery Name", field: "name", cellRenderer: AnchorTo },
     { headerName: "Date", field: "dt" },
     {
       headerName: "Winning Bid Max",
