@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import AgDataGrid from "./components/AgDataGrid";
-import { ColDef } from "ag-grid-community";
+import { ColDef, ValueFormatterParams } from "ag-grid-community";
 
 interface IRow {
   dt: string;
@@ -18,13 +18,31 @@ function App() {
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [colDefs, setColDefs] = useState<ColDef[]>([
     { headerName: "Date", field: "dt" },
-    { headerName: "Winning Bid Max", field: "winning_bid_max" },
-    { headerName: "Winning Bid Min", field: "winning_bid_min" },
-    { headerName: "Winning Bid Mean", field: "winning_bid_mean" },
+    {
+      headerName: "Winning Bid Max",
+      field: "winning_bid_max",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
+    },
+    {
+      headerName: "Winning Bid Min",
+      field: "winning_bid_min",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
+    },
+    {
+      headerName: "Winning Bid Mean",
+      field: "winning_bid_mean",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
+    },
     { headerName: "Auction Trading Volume", field: "auction_trading_volume" },
     { headerName: "Auction Lots Count", field: "auction_lots_count" },
     { headerName: "All Auctions Lots Count", field: "all_auctions_lots_count" },
-    { headerName: "Auction Name", field: "auction_name" },
+    { headerName: "Auction", field: "auction_name" },
   ]);
 
   useEffect(() => {

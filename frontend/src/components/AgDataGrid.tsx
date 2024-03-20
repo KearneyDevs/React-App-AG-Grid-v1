@@ -1,20 +1,17 @@
-import { AgGridReact } from "ag-grid-react"; // AG Grid Component
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the grid
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
 
 interface AgDataGridProps {
-  colDefs: any[]; // You can define a more specific type for colDefs if necessary
-  rowData: any[]; // You can define a more specific type for rowData if necessary
+  colDefs: any[];
+  rowData: any[];
 }
 
 const AgDataGrid: React.FC<AgDataGridProps> = ({ colDefs, rowData }) => {
   return (
-    <div
-      className="ag-theme-quartz" // applying the grid theme
-      style={{ width: "100%", height: "500px" }} // the grid will fill the size of the parent container
-    >
+    <div className="ag-theme-quartz" style={{ width: "100%", height: "500px" }}>
       {rowData && rowData.length > 0 ? (
-        <AgGridReact rowData={rowData} columnDefs={colDefs} />
+        <AgGridReact rowData={rowData} columnDefs={colDefs} pagination={true} />
       ) : (
         <div style={{ textAlign: "center", paddingTop: "20px" }}>
           No data available
