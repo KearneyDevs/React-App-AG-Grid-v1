@@ -17,6 +17,7 @@ interface IRow {
 function App() {
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [colDefs, setColDefs] = useState<ColDef[]>([
+    { headerName: "Auction", field: "auction_name" },
     { headerName: "Date", field: "dt" },
     {
       headerName: "Winning Bid Max",
@@ -42,7 +43,6 @@ function App() {
     { headerName: "Auction Trading Volume", field: "auction_trading_volume" },
     { headerName: "Auction Lots Count", field: "auction_lots_count" },
     { headerName: "All Auctions Lots Count", field: "all_auctions_lots_count" },
-    { headerName: "Auction", field: "auction_name" },
   ]);
 
   useEffect(() => {
