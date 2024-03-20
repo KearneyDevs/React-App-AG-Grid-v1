@@ -1,0 +1,41 @@
+# Ignore node_modules directory for both frontend and backend
+node_modules/
+
+# Ignore build output directories (e.g., 'build' or 'dist') for frontend
+frontend/build/
+frontend/dist/
+
+# Ignore environment-specific files (e.g., .env) for backend
+backend/.env
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore IDE and editor-specific files
+.vscode/
+.idea/
+
+# Ignore npm debugging logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore generated files and folders
+coverage/
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# Ignore lock files
+yarn.lock
+package-lock.json
+
+# Ignore compiled binary files (e.g., .exe, .dll, .so)
+*.exe
+*.dll
+*.so
