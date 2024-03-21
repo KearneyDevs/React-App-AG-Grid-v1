@@ -5,6 +5,7 @@ import {
   ValidationResult,
 } from "../../hooks/useFormValidator";
 import { useFormSubmitter } from "../../hooks/useFormSubmitter";
+import InputField from "./InputField";
 
 type FormErrors = {
   [key: string]: string | undefined;
@@ -59,20 +60,19 @@ const Form: React.FC<Props> = ({ formConfig }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      {Object.entries(fields).map(([fieldName, fieldConfig]) => {
+      {Object.entries(fields).map(([fieldName, fieldConfig], index) => {
         return (
-          <div key={fieldName}>
-            <label>{fieldConfig.label}</label>
-            <input
-              type={fieldConfig.type}
-              name={fieldName}
-              value={
-                formValues[fieldName] !== undefined ? formValues[fieldName] : ""
-              }
-              onChange={handleInputChange}
-            />
-            {formErrors[fieldName] && <span>{formErrors[fieldName]}</span>}
-          </div>
+          <InputField
+            key={index + fieldName}
+            name={fieldName}
+            type={fieldConfig.type}
+            label={fieldConfig.label}
+            value={
+              formValues[fieldName] !== undefined ? formValues[fieldName] : ""
+            }
+            onChange={handleInputChange}
+            error={formErrors[fieldName]}
+          />
         );
       })}
 

@@ -2,6 +2,7 @@
 interface InputFieldProps {
   name: string;
   label: string;
+  type: string;
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
@@ -10,6 +11,7 @@ interface InputFieldProps {
 const InputField: React.FC<InputFieldProps> = ({
   name,
   label,
+  type,
   value,
   onChange,
   error,
@@ -17,7 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({
   return (
     <div>
       <label>{label}</label>
-      <input type="text" name={name} value={value} onChange={onChange} />
+      <input type={type} name={name} value={value} onChange={onChange} />
       {error && <span>{error}</span>}
     </div>
   );
