@@ -1,12 +1,12 @@
-import { z } from "zod";
+import { object, string, number } from "zod";
 
 export const formConfig = {
-  schema: z.object({
-    name: z.string().min(1),
-    country: z.string().min(1),
-    whiskies: z.string().min(1),
-    votes: z.string().min(1),
-    rating: z.number().nonnegative(),
+  schema: object({
+    name: string().min(1),
+    country: string().min(1),
+    whiskies: string().min(1),
+    votes: string().min(1),
+    rating: number().nonnegative(),
   }),
   fields: {
     name: { label: "Name", type: "text" },
