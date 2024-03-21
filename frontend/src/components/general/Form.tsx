@@ -28,7 +28,6 @@ const Form: React.FC<Props> = ({ formConfig }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log(name);
     const fieldSchema = schema.shape[name as keyof typeof initialValues];
 
     const newValue =
