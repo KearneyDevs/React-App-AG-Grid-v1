@@ -4,14 +4,14 @@ import "./App.css";
 // import Auctions from "./components/Auctions";
 // import DistilleriesInfo from "./components/DistilleriesInfo";
 // import AuctionsInfo from "./components/AuctionsInfo";
-// import DistilleryInfo from "./components/DistilleryInfo";
 import NewDistilleryForm from "./components/forms/NewDistilleryForm";
+import DistillInfo from "./views/DistillInfo";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" Component={NewDistilleryForm} />
+        <Route path="/" Component={DistillInfo} />
       </Routes>
     </BrowserRouter>
   );
