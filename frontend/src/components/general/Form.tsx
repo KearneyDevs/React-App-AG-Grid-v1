@@ -27,8 +27,8 @@ const Form: React.FC<Props> = ({ formConfig }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const fieldSchema = schema.shape[name as keyof typeof initialValues]; // Use type assertion to ensure 'name' is a valid key of FormValues
-    // Check the schema type using Zod's built-in methods
+    const fieldSchema = schema.shape[name as keyof typeof initialValues];
+
     const newValue =
       fieldSchema instanceof ZodNumber ? parseFloat(value) : value;
     setFormValues({ ...formValues, [name]: newValue });
