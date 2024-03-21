@@ -1,5 +1,10 @@
 import { useState } from "react";
-import { z, ZodNumber } from "zod";
+import { ZodObject, ZodNumber } from "zod";
+import {
+  useFormValidator,
+  ValidationResult,
+} from "../../hooks/useFormValidator";
+import { useFormSubmitter } from "../../hooks/useFormSubmitter";
 
 type FormErrors = {
   [key: string]: string | undefined;
@@ -10,21 +15,21 @@ interface FieldConfig {
   type: string;
 }
 
-interface FormConfig {
-  schema: z.ZodObject<any>;
-  fields: Record<string, FieldConfig>;
-  initialValues: Record<string, string | number>;
-}
-
 interface Props {
-  formConfig: FormConfig;
+  formConfig: {
+    schema: ZodObject<any>;
+    fields: Record<string, FieldConfig>;
+    initialValues: Record<string, string | number>;
+  };
 }
 
 const Form: React.FC<Props> = ({ formConfig }) => {
   const { schema, fields, initialValues } = formConfig;
-
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+
+  const { validate } = useFormValidator(schema);
+  const { submit } = useFormSubmitter();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -32,29 +37,26 @@ const Form: React.FC<Props> = ({ formConfig }) => {
 
     const newValue =
       fieldSchema instanceof ZodNumber ? parseFloat(value) : value;
+
     setFormValues({ ...formValues, [name]: newValue });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      schema.parse(formValues);
-      setFormErrors({});
-      console.log("Form is valid:", formValues);
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        console.log("Form validation failed:", error.errors);
-
-        const errorMessages = error.errors.reduce((acc, curr) => {
-          acc[curr.path[0]] = curr.message;
-          return acc;
-        }, {} as FormErrors);
-
-        setFormErrors(errorMessages);
+    const validationResult: ValidationResult = validate(formValues);
+    if (validationResult.isValid) {
+      try {
+        await submit(formValues);
+        console.log("Form submission successful", formValues);
+      } catch (error) {
+        console.error("Form submission failed", error);
       }
+    } else {
+      setFormErrors(validationResult.errors);
     }
   };
+
   return (
     <form onSubmit={handleSubmit}>
       {Object.entries(fields).map(([fieldName, fieldConfig]) => {
