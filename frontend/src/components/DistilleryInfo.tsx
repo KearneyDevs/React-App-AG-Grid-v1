@@ -3,7 +3,6 @@ import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 
 const AnchorTo = (p: any) => {
-  console.log(p);
   return <a href={"/"}>{p.value}</a>;
 };
 
