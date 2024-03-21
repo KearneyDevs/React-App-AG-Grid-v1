@@ -22,11 +22,13 @@ interface Props {
 
 const Form: React.FC<Props> = ({ formConfig }) => {
   const { schema, fields, initialValues } = formConfig;
+
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    console.log(name);
     const fieldSchema = schema.shape[name as keyof typeof initialValues];
 
     const newValue =
@@ -45,12 +47,12 @@ const Form: React.FC<Props> = ({ formConfig }) => {
       if (error instanceof z.ZodError) {
         console.log("Form validation failed:", error.errors);
 
-        setFormErrors(
-          error.errors.reduce((acc, curr) => {
-            acc[curr.path[0]] = curr.message;
-            return acc;
-          }, {} as FormErrors)
-        );
+        const errorMessages = error.errors.reduce((acc, curr) => {
+          acc[curr.path[0]] = curr.message;
+          return acc;
+        }, {} as FormErrors);
+
+        setFormErrors(errorMessages);
       }
     }
   };
