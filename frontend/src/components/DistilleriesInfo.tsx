@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef } from "ag-grid-community";
+import useFetch from "../hooks/useFetch";
+
+const AnchorTo = (p: { value: string; data: { slug: string } }) => {
+  const { value, data } = p;
+  const { slug } = data;
+  return <a href={`/distilleries/${slug}`}>{value}</a>; // Use slug in the href
+};
 
 interface IRow {
   name: string;
@@ -13,8 +20,13 @@ interface IRow {
 
 const DistilleriesInfo = () => {
   const [rowData, setRowData] = useState<IRow[]>([]);
-  const [colDefs, setColDefs] = useState<ColDef[]>([
-    { headerName: "Distillery Name", field: "name" },
+
+  const { data, loading, error } = useFetch(
+    "http://localhost:3001/api/distilleries_info"
+  );
+
+  const colDefs: ColDef[] = [
+    { headerName: "Distillery Name", field: "name", cellRenderer: AnchorTo },
     { headerName: "Country", field: "country", filter: true },
     {
       headerName: "Whiskies",
@@ -28,30 +40,23 @@ const DistilleriesInfo = () => {
       headerName: "Rating",
       field: "whiskybase_rating",
     },
-  ]);
+  ];
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/distilleries_info")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Work with the JSON data here
-        setRowData(data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the fetch operation
-        console.error("There was a problem with the fetch operation:", error);
-      });
-  }, []);
-  return (
-    <div>
-      <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />
-    </div>
-  );
+    if (data) {
+      setRowData(data as IRow[]);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>{error.message}</h2>;
+  }
+
+  return <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />;
 };
 
 export default DistilleriesInfo;

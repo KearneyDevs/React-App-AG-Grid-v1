@@ -11,6 +11,7 @@ import Home from "./views/Home";
 import About from "./views/About";
 import Contact from "./views/Contact";
 import Footer from "./components/Footer";
+import DistilleryInformation from "./views/DistilleryInformation";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Routes>
         <Route path="/" Component={Home} />
         <Route path="/distilleries" Component={DistillInfo} />
-        <Route path="/distilleries/:slug" Component={DistillInfo} />
+        <Route path="/distilleries/:slug" Component={DistilleryInformation} />
         <Route path="/auctions" Component={DistillInfo} />
         <Route path="/auctions/:slug" Component={DistillInfo} />
         <Route path="/about" Component={About} />

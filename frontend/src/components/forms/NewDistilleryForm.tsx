@@ -3,7 +3,7 @@ import Form from "../general/Form";
 
 const NewDistilleryForm = () => {
   return (
-    <div>
+    <div className="w-full max-w-xs">
       <h2 className="text-2xl font-bold underline">
         Register a New Distillery
       </h2>

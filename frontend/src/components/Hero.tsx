@@ -21,7 +21,7 @@ const Hero = () => {
         </div>
         <div className="md:w-1/2">
           <img
-            className="object-cover"
+            className="object-cover max-h-[500px] w-full"
             src="/assets/imgs/whisky-hero.jpg"
             alt="Hero image showing barrels"
           />

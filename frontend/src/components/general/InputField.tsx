@@ -17,10 +17,18 @@ const InputField: React.FC<InputFieldProps> = ({
   error,
 }) => {
   return (
-    <div>
-      <label>{label}</label>
-      <input type={type} name={name} value={value} onChange={onChange} />
-      {error && <span>{error}</span>}
+    <div className="mb-4">
+      <label className="block text-gray-700 font-bold mb-2">{label}</label>
+      <input
+        type={type}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={`shadow appearance-none border ${
+          error ? "border-red-500" : ""
+        } rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline`}
+      />
+      {error && <p className="text-red-500 italic">{error}</p>}
     </div>
   );
 };

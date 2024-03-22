@@ -76,7 +76,12 @@ const Form: React.FC<Props> = ({ formConfig }) => {
         );
       })}
 
-      <button type="submit">Submit</button>
+      <button
+        type="submit"
+        className="p-2 px-6 text-white bg-brightRed rounded-full align-middle hover:bg-brightRedLight"
+      >
+        Submit
+      </button>
     </form>
   );
 };

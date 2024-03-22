@@ -2,10 +2,7 @@ import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
-
-const AnchorTo = (p: any) => {
-  return <a href={"/"}>{p.value}</a>;
-};
+import { useParams } from "react-router-dom";
 
 interface IRow {
   dt: string;
@@ -19,10 +16,11 @@ interface IRow {
 }
 
 const DistilleriesInfo = () => {
+  const { slug } = useParams<{ slug: string }>();
   const [rowData, setRowData] = useState<IRow[]>([]);
 
   const { data, loading, error } = useFetch(
-    "http://localhost:3001/api/distillery_data/speyside"
+    `http://localhost:3001/api/distillery_data/${slug}`
   );
 
   const formatCurrency = (params: ValueFormatterParams) => {
@@ -30,7 +28,7 @@ const DistilleriesInfo = () => {
   };
 
   const colDefs: ColDef[] = [
-    { headerName: "Distillery Name", field: "name", cellRenderer: AnchorTo },
+    { headerName: "Distillery Name", field: "name" },
     { headerName: "Date", field: "dt" },
     {
       headerName: "Winning Bid Max",
