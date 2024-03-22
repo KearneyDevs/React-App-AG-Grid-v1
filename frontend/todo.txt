@@ -7,4 +7,4 @@
 
 [] - update anchors to navlinks and links
 [] - create search for auctions and distilleries components
-[] - create react portal to update title of application to display the page you are on
+[x] - create react portal to update title of application to display the page you are on
