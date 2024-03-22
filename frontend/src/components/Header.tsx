@@ -1,5 +1,3 @@
-import React from "react";
-
 const Header = () => {
   return (
     <nav className="relative container mx-auto p-6">
