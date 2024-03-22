@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" Component={Home} />
+        <Route path="/" element={<Home />} />
         <Route
           path="/distilleries"
           element={
