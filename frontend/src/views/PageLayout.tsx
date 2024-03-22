@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 interface DistilleryInformationProps {
   component?: React.ComponentType<any>;
   pageTitle: string;
@@ -9,6 +11,14 @@ const PageLayout: React.FC<DistilleryInformationProps> = ({
   pageTitle,
   pageParagraph,
 }) => {
+  useEffect(() => {
+    const originalTitle = document.title;
+    document.title = `WA | ${pageTitle}`;
+    return () => {
+      document.title = originalTitle;
+    };
+  }, [pageTitle]);
+
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10">
       <h2 className="max-w-md text-4xl font-bold mb-5">{pageTitle}</h2>
