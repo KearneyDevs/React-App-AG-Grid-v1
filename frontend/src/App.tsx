@@ -8,6 +8,7 @@ import NewDistilleryForm from "./components/forms/NewDistilleryForm";
 import DistillInfo from "./views/DistillInfo";
 import Header from "./components/Header";
 import Home from "./views/Home";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -16,7 +17,13 @@ function App() {
       <Routes>
         <Route path="/" Component={Home} />
         <Route path="/distilleries" Component={DistillInfo} />
+        <Route path="/distilleries/:slug" Component={DistillInfo} />
+        <Route path="/auctions" Component={DistillInfo} />
+        <Route path="/auctions/:slug" Component={DistillInfo} />
+        <Route path="/about" Component={DistillInfo} />
+        <Route path="/contact" Component={DistillInfo} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
