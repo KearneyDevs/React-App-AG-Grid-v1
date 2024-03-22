@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import useFetch from "../hooks/useFetch";
+
+const AnchorTo = (p: { value: string; data: { auction_slug: string } }) => {
+  console.log(p);
+  const { value, data } = p;
+  const { auction_slug } = data;
+  return <a href={`/auctions/${auction_slug}`}>{value}</a>; // Use slug in the href
+};
 
 interface IRow {
   dt: string;
@@ -15,57 +23,52 @@ interface IRow {
 
 const Auction = () => {
   const [rowData, setRowData] = useState<IRow[]>([]);
-  const [colDefs, setColDefs] = useState<ColDef[]>([
-    { headerName: "Auction", field: "auction_name" },
+
+  const { data, loading, error } = useFetch(
+    `http://localhost:3001/api/auctions_data/`
+  );
+
+  const formatCurrency = (params: ValueFormatterParams) => {
+    return "£" + params.value.toLocaleString();
+  };
+
+  const colDefs: ColDef[] = [
+    { headerName: "Auction", field: "auction_name", cellRenderer: AnchorTo },
     { headerName: "Date", field: "dt" },
     {
       headerName: "Winning Bid Max",
       field: "winning_bid_max",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Winning Bid Min",
       field: "winning_bid_min",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Winning Bid Mean",
       field: "winning_bid_mean",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     { headerName: "Auction Trading Volume", field: "auction_trading_volume" },
     { headerName: "Auction Lots Count", field: "auction_lots_count" },
     { headerName: "All Auctions Lots Count", field: "all_auctions_lots_count" },
-  ]);
+  ];
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/auctions_data")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Work with the JSON data here
-        setRowData(data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the fetch operation
-        console.error("There was a problem with the fetch operation:", error);
-      });
-  }, []);
-  return (
-    <div>
-      <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />
-    </div>
-  );
+    if (data) {
+      setRowData(data as IRow[]);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>{error.message}</h2>;
+  }
+  return <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />;
 };
 
 export default Auction;

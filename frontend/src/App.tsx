@@ -1,18 +1,20 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-// import Auction from "./components/Auction";
-// import Auctions from "./components/Auctions";
-import DistilleriesInfo from "./components/DistilleriesInfo";
-// import AuctionsInfo from "./components/AuctionsInfo";
-import NewDistilleryForm from "./components/forms/NewDistilleryForm";
-import DistillInfo from "./views/DistillInfo";
-import Header from "./components/Header";
+
+// Views
 import Home from "./views/Home";
+import PageLayout from "./views/PageLayout";
 import About from "./views/About";
 import Contact from "./views/Contact";
-import Footer from "./components/Footer";
-import DistilleryInformation from "./views/DistilleryInformation";
+
+// Components
+import Header from "./components/Header";
+import DistilleriesInfo from "./components/DistilleriesInfo";
 import DistilleryInfo from "./components/DistilleryInfo";
+import Auction from "./components/Auction";
+import Auctions from "./components/Auctions";
+// import AuctionsInfo from "./components/AuctionsInfo";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -23,26 +25,59 @@ function App() {
         <Route
           path="/distilleries"
           element={
-            <DistillInfo
-              distilleryTable={DistilleriesInfo}
+            <PageLayout
               pageTitle="List of Distilleries"
-              pagePara="Search and select a distillery name for more information."
+              pageParagraph="Search and select a distillery name for more information."
+              component={DistilleriesInfo}
             />
           }
         />
         <Route
           path="/distilleries/:slug"
           element={
-            <DistillInfo
-              distilleryTable={DistilleryInfo}
+            <PageLayout
               pageTitle="Distillery Information"
+              pageParagraph="Please interact with the data below relating to your selected distillery."
+              component={DistilleryInfo}
             />
           }
         />
-        {/* <Route path="/auctions" Component={DistillInfo} />
-        <Route path="/auctions/:slug" Component={DistillInfo} /> */}
-        <Route path="/about" Component={About} />
-        <Route path="/contact" Component={Contact} />
+        <Route
+          path="/auctions"
+          element={
+            <PageLayout
+              pageTitle="List of Auctions"
+              pageParagraph="Search and select an auction name for more information."
+              component={Auctions}
+            />
+          }
+        />
+        <Route
+          path="/auctions/:slug"
+          element={
+            <PageLayout
+              pageTitle="Auction Information"
+              pageParagraph="Please interact with the data below relating to your selected auction."
+              component={Auction}
+            />
+          }
+        />
+        <Route
+          path="/about"
+          element={
+            <PageLayout pageTitle="About" pageParagraph="" component={About} />
+          }
+        />
+        <Route
+          path="/contact"
+          element={
+            <PageLayout
+              pageTitle="Contact"
+              pageParagraph=""
+              component={Contact}
+            />
+          }
+        />
       </Routes>
       <Footer />
     </BrowserRouter>
