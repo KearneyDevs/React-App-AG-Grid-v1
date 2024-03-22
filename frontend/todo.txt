@@ -1,0 +1,10 @@
+[x] - Create useFetch hook
+[x] - Create view pages
+[x] - Create routes for view pages
+[] - Create styling for application using tailwind - in progress
+[] - Create documentation
+[] - Look deeper into ag-grid
+
+[] - update anchors to navlinks and links
+[] - create search for auctions and distilleries components
+[] - create react portal to update title of application to display the page you are on
