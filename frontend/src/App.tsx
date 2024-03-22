@@ -15,6 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" Component={Home} />
+        <Route path="/distilleries" Component={DistillInfo} />
       </Routes>
     </BrowserRouter>
   );
