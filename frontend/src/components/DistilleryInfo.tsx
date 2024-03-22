@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
@@ -57,15 +57,15 @@ const DistilleriesInfo = () => {
     }
   }, [data]);
 
-  return (
-    <>
-      {error ? (
-        <h2>{error.message}</h2>
-      ) : (
-        <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />
-      )}
-    </>
-  );
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>{error.message}</h2>;
+  }
+
+  return <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />;
 };
 
 export default DistilleriesInfo;
