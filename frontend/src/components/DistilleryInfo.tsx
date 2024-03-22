@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import useFetch from "../hooks/useFetch";
 
 const AnchorTo = (p: any) => {
   return <a href={"/"}>{p.value}</a>;
@@ -19,61 +20,51 @@ interface IRow {
 
 const DistilleriesInfo = () => {
   const [rowData, setRowData] = useState<IRow[]>([]);
-  const [colDefs, setColDefs] = useState<ColDef[]>([
+
+  const { data, loading, error } = useFetch(
+    "http://localhost:3001/api/distillery_data/speyside"
+  );
+
+  const formatCurrency = (params: ValueFormatterParams) => {
+    return "£" + params.value.toLocaleString();
+  };
+
+  const colDefs: ColDef[] = [
     { headerName: "Distillery Name", field: "name", cellRenderer: AnchorTo },
     { headerName: "Date", field: "dt" },
     {
       headerName: "Winning Bid Max",
       field: "winning_bid_max",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Winning Bid Min",
       field: "winning_bid_min",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Winning Bid Mean",
       field: "winning_bid_mean",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
-    {
-      headerName: "Trading Vol",
-      field: "trading_volume",
-    },
-    {
-      headerName: "Lots Count",
-      field: "lots_count",
-    },
-  ]);
+    { headerName: "Trading Vol", field: "trading_volume" },
+    { headerName: "Lots Count", field: "lots_count" },
+  ];
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/distillery_data/speyside")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        // Work with the JSON data here
-        setRowData(data);
-      })
-      .catch((error) => {
-        // Handle any errors that occurred during the fetch operation
-        console.error("There was a problem with the fetch operation:", error);
-      });
-  }, []);
+    if (data) {
+      setRowData(data as IRow[]);
+    }
+  }, [data]);
+
   return (
-    <div>
-      <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />
-    </div>
+    <>
+      {error ? (
+        <h2>{error.message}</h2>
+      ) : (
+        <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />
+      )}
+    </>
   );
 };
 
