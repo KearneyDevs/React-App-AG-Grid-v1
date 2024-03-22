@@ -6,12 +6,15 @@ import "./App.css";
 // import AuctionsInfo from "./components/AuctionsInfo";
 import NewDistilleryForm from "./components/forms/NewDistilleryForm";
 import DistillInfo from "./views/DistillInfo";
+import Header from "./components/Header";
+import Home from "./views/Home";
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
-        <Route path="/" Component={DistillInfo} />
+        <Route path="/" Component={Home} />
       </Routes>
     </BrowserRouter>
   );
