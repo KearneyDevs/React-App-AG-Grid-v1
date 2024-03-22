@@ -36,17 +36,17 @@ const Auction = () => {
     { headerName: "Auction", field: "auction_name", cellRenderer: AnchorTo },
     { headerName: "Date", field: "dt" },
     {
-      headerName: "Winning Bid Max",
+      headerName: "Highest Winning Bid",
       field: "winning_bid_max",
       valueFormatter: formatCurrency,
     },
     {
-      headerName: "Winning Bid Min",
+      headerName: "Lowest Winning Bid",
       field: "winning_bid_min",
       valueFormatter: formatCurrency,
     },
     {
-      headerName: "Winning Bid Mean",
+      headerName: "Average Winning Bid",
       field: "winning_bid_mean",
       valueFormatter: formatCurrency,
     },
