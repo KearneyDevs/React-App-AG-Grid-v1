@@ -1,19 +1,21 @@
-import DistilleriesInfo from "../components/DistilleriesInfo";
-import NewDistilleryForm from "../components/forms/NewDistilleryForm";
+interface DistilleryInformationProps {
+  distilleryTable: React.ComponentType<any>;
+  pageTitle: string;
+  pagePara?: string;
+}
 
-const DistillInfo = () => {
+const DistillInfo: React.FC<DistilleryInformationProps> = ({
+  distilleryTable: DistilleriesTable,
+  pageTitle,
+  pagePara,
+}) => {
   return (
     <div className="container flex flex-col px-4 mx-auto mt-10">
-      <h2 className="max-w-md text-4xl font-bold mb-5">
-        Distillery Information
-      </h2>
+      <h2 className="max-w-md text-4xl font-bold mb-5">{pageTitle}</h2>
 
-      <p className="text-darkGrayishBlue mb-10">
-        Search and select a distillery name for more information.
-      </p>
+      {pagePara && <p className="text-darkGrayishBlue mb-10">{pagePara}</p>}
 
-      <DistilleriesInfo />
-      <NewDistilleryForm />
+      <DistilleriesTable />
     </div>
   );
 };
