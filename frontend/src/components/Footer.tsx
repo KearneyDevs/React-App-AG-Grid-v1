@@ -10,7 +10,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex justify-around space-x-32">
-          <div className="flex flex-col space-y-3 text-white">
+          <div className="flex flex-col space-y-3 text-white text-center md:text-left">
             <a href="/" className="hover:text-brightRed">
               Home
             </a>
