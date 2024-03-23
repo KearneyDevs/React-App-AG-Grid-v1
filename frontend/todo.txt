@@ -4,6 +4,7 @@
 [] - Create styling for application using tailwind - in progress
 [] - Create documentation
 [] - Look deeper into ag-grid
+[] - Testing Tracking
 
 [x] - update anchors to navlinks and links
 [x] - create search for auctions and distilleries components
