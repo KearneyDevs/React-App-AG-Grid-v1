@@ -6,5 +6,5 @@
 [] - Look deeper into ag-grid
 
 [x] - update anchors to navlinks and links
-[] - create search for auctions and distilleries components
+[x] - create search for auctions and distilleries components
 [x] - create react portal to update title of application to display the page you are on
