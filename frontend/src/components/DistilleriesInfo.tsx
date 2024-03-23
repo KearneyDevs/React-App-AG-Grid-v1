@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
 import { convertStringToNumber } from "../utils/functions";
 import customCellRenderer from "../utils/customCellRenderer";
-
-const AnchorTo = (p: { value: string; data: { slug: string } }) => {
-  const { value, data } = p;
-  const { slug } = data;
-  return <Link to={`/distilleries/${slug}`}>{value}</Link>;
-};
 
 interface IRow {
   name: string;
