@@ -1,8 +1,10 @@
 [x] - Create useFetch hook
 [x] - Create view pages
 [x] - Create routes for view pages
+[x] - parse string values to numbers in table that require it.
 [] - Create styling for application using tailwind - in progress
 [] - Create documentation
+[] - Add active class to nav
 [] - Look deeper into ag-grid
 
 [x] - update anchors to navlinks and links

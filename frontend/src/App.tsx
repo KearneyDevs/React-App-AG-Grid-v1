@@ -4,7 +4,6 @@ import "./App.css";
 // Views
 import Home from "./views/Home";
 import PageLayout from "./views/PageLayout";
-import About from "./views/About";
 import Contact from "./views/Contact";
 
 // Components
@@ -60,12 +59,6 @@ function App() {
               pageParagraph="Please interact with the data below relating to your selected auction."
               component={Auction}
             />
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <PageLayout pageTitle="About" pageParagraph="" component={About} />
           }
         />
         <Route

@@ -8,10 +8,10 @@ const Hero = () => {
           </h1>
           <p className="max-w-md text-center text-darkGrayishBlue md:text-left">
             Navigate and search this application to find auctions and distillery
-            information from the Whisky Hunter API.
+            information utilising the Whisky Hunter API.
           </p>
         </div>
-        <div className="md:w-1/2">
+        <div className="w-full md:w-1/2">
           <img
             className="object-cover max-h-[500px] w-full"
             src="/assets/imgs/whisky-hero.jpg"

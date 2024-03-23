@@ -14,7 +14,7 @@ const AgDataGrid: React.FC<AgDataGridProps> = ({
   pagination,
 }) => {
   return (
-    <div className="ag-theme-quartz" style={{ width: "100%", height: "500px" }}>
+    <div className="ag-theme-quartz mb-10 w-full h-[500px]">
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}

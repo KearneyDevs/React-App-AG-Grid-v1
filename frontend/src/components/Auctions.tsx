@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AgDataGrid from "./general/AgDataGrid";
-import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
+import { formatCurrency } from "../utils/functions";
 
 const AnchorTo = (p: { value: string; data: { auction_slug: string } }) => {
   console.log(p);
   const { value, data } = p;
   const { auction_slug } = data;
-  return <a href={`/auctions/${auction_slug}`}>{value}</a>; // Use slug in the href
+  return <Link to={`/auctions/${auction_slug}`}>{value}</Link>; // Use slug in the href
 };
 
 interface IRow {
@@ -29,10 +31,6 @@ const Auction = () => {
   const { data, loading, error } = useFetch(
     `http://localhost:3001/api/auctions_data/`
   );
-
-  const formatCurrency = (params: ValueFormatterParams) => {
-    return "£" + params.value.toLocaleString();
-  };
 
   const colDefs: ColDef[] = [
     { headerName: "Auction", field: "auction_name", cellRenderer: AnchorTo },

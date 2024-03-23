@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
+import { convertStringToNumber } from "../utils/functions";
 
 const AnchorTo = (p: { value: string; data: { slug: string } }) => {
   const { value, data } = p;
   const { slug } = data;
-  return <a href={`/distilleries/${slug}`}>{value}</a>; // Use slug in the href
+  return <Link to={`/distilleries/${slug}`}>{value}</Link>; // Use slug in the href
 };
 
 interface IRow {
@@ -33,14 +35,17 @@ const DistilleriesInfo = () => {
     {
       headerName: "Whiskies",
       field: "whiskybase_whiskies",
+      valueGetter: convertStringToNumber("whiskybase_whiskies") 
     },
     {
       headerName: "Votes",
       field: "whiskybase_votes",
+      valueGetter: convertStringToNumber("whiskybase_votes") 
     },
     {
       headerName: "Rating",
       field: "whiskybase_rating",
+      valueGetter: convertStringToNumber("whiskybase_rating") 
     },
   ];
 
@@ -73,6 +78,7 @@ const DistilleriesInfo = () => {
   return (
     <>
       <input
+        className="block text-gray-700 font-bold mb-2"
         type="text"
         placeholder="Search by name or country"
         value={searchTerm}

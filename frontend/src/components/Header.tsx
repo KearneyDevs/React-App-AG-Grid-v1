@@ -27,20 +27,10 @@ const Header = () => {
             <NavLink to="/auctions" className="hover:text-darkGrayishBlue">
               Auctions
             </NavLink>
-            <NavLink to="/about" className="hover:text-darkGrayishBlue">
-              About
-            </NavLink>
             <NavLink to="/contact" className="hover:text-darkGrayishBlue">
               Contact
             </NavLink>
           </div>
-
-          {/* <a
-            href="#"
-            className="hidden md:block p-3 px-6 text-white bg-brightRed rounded-full align-middle hover:bg-brightRedLight"
-          >
-            Get Started
-          </a> */}
 
           {/* hamburger menu */}
           <button
@@ -67,7 +57,6 @@ const Header = () => {
             <NavLink to="/">Home</NavLink>
             <NavLink to="/distilleries">Distilleries</NavLink>
             <NavLink to="/auctions">Auctions</NavLink>
-            <NavLink to="/about">About</NavLink>
             <NavLink to="/contact">Contact</NavLink>
           </div>
         </div>
