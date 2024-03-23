@@ -10,14 +10,6 @@ const Hero = () => {
             Navigate and search this application to find auctions and distillery
             information from the Whisky Hunter API.
           </p>
-          <div className="flex justify-center md:justify-start">
-            <a
-              href="#"
-              className="p-2 px-6 text-white bg-brightRed rounded-full align-middle hover:bg-brightRedLight"
-            >
-              Get Started
-            </a>
-          </div>
         </div>
         <div className="md:w-1/2">
           <img
