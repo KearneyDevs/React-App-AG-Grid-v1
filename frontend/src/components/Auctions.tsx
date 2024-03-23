@@ -23,6 +23,8 @@ interface IRow {
 
 const Auction = () => {
   const [rowData, setRowData] = useState<IRow[]>([]);
+  const [filteredData, setFilteredData] = useState<IRow[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const { data, loading, error } = useFetch(
     `http://localhost:3001/api/auctions_data/`
@@ -58,8 +60,18 @@ const Auction = () => {
   useEffect(() => {
     if (data) {
       setRowData(data as IRow[]);
+      setFilteredData(data as IRow[]);
     }
   }, [data]);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.toLowerCase();
+    setSearchTerm(value);
+    const filtered = rowData.filter((row) =>
+      row.auction_name.toLowerCase().includes(value)
+    );
+    setFilteredData(filtered);
+  };
 
   if (loading) {
     return <h2>Loading...</h2>;
@@ -68,7 +80,17 @@ const Auction = () => {
   if (error) {
     return <h2>{error.message}</h2>;
   }
-  return <AgDataGrid colDefs={colDefs} rowData={rowData} pagination={true} />;
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Search by name or country"
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <AgDataGrid colDefs={colDefs} rowData={filteredData} pagination={true} />
+    </>
+  );
 };
 
 export default Auction;
