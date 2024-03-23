@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer id="footer" className="bg-veryDarkBlue">
@@ -11,21 +12,21 @@ const Footer = () => {
         </div>
         <div className="flex justify-around space-x-32">
           <div className="flex flex-col space-y-3 text-white text-center md:text-left">
-            <a href="/" className="hover:text-brightRed">
+            <Link to="/" className="hover:text-brightRed">
               Home
-            </a>
-            <a href="/distilleries" className="hover:text-brightRed">
+            </Link>
+            <Link to="/distilleries" className="hover:text-brightRed">
               Distilleries
-            </a>
-            <a href="/auctions" className="hover:text-brightRed">
+            </Link>
+            <Link to="/auctions" className="hover:text-brightRed">
               Auctions
-            </a>
-            <a href="/about" className="hover:text-brightRed">
+            </Link>
+            <Link to="/about" className="hover:text-brightRed">
               About
-            </a>
-            <a href="/contact" className="hover:text-brightRed">
+            </Link>
+            <Link to="/contact" className="hover:text-brightRed">
               Contact
-            </a>
+            </Link>
           </div>
         </div>
       </div>
