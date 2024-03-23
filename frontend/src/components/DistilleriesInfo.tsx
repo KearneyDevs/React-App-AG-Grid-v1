@@ -4,11 +4,12 @@ import AgDataGrid from "./general/AgDataGrid";
 import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
 import { convertStringToNumber } from "../utils/functions";
+import customCellRenderer from "../utils/customCellRenderer";
 
 const AnchorTo = (p: { value: string; data: { slug: string } }) => {
   const { value, data } = p;
   const { slug } = data;
-  return <Link to={`/distilleries/${slug}`}>{value}</Link>; // Use slug in the href
+  return <Link to={`/distilleries/${slug}`}>{value}</Link>;
 };
 
 interface IRow {
@@ -30,7 +31,7 @@ const DistilleriesInfo = () => {
   );
 
   const colDefs: ColDef[] = [
-    { headerName: "Distillery Name", field: "name", cellRenderer: AnchorTo },
+    { headerName: "Distillery Name", field: "name", cellRenderer: customCellRenderer("slug", '/distilleries/', "name") },
     { headerName: "Country", field: "country", filter: true },
     {
       headerName: "Whiskies",
