@@ -30,8 +30,6 @@ const DataTableWithFilter: React.FC<ComponentProps> = ({ config }) => {
   const segments = pathname.split("/");
   const segment = segments[segments.length - 1];
 
-  console.log(segment);
-
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [filteredData, setFilteredData] = useState<IRow[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
