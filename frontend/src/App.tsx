@@ -57,18 +57,6 @@ function App() {
           }
         />
         <Route
-          path="/auctions/:slug"
-          element={
-            <PageLayout
-              pageTitle="Auction Information"
-              pageParagraph="Please interact with the data below relating to your selected auction."
-              component={() => (
-                <DataTableWithFilter config={auctionInfoConfig} />
-              )}
-            />
-          }
-        />
-        <Route
           path="/auctions_info/:slug"
           element={
             <PageLayout
