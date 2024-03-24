@@ -28,11 +28,17 @@ router.get("/auctions_data/", async (req, res) => {
   }
 });
 
-router.get("/auctions_info", async (req, res) => {
+router.get("/auctions_info/:slug", async (req, res) => {
+  const { slug } = req.params;
   try {
     const response = await fetch(`https://whiskyhunter.net/api/auctions_info`);
     const data = await response.json();
-    res.json(data);
+    const filteredData = data.filter((item) => item.slug === slug);
+    if (filteredData.length > 0) {
+      res.json(filteredData); // Send filtered data as response
+    } else {
+      res.status(404).json({ error: "Auction not found" }); // Handle case where auction is not found
+    }
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Internal server error" });
