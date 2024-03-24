@@ -1,6 +1,5 @@
 import { ColDef } from "ag-grid-community";
 import { formatCurrency } from "../../utils/functions";
-import { ValueFormatterParams } from "ag-grid-community";
 
 type ColDefType = ColDef[];
 
