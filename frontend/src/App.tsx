@@ -8,12 +8,14 @@ import Contact from "./views/Contact";
 
 // Components
 import Header from "./components/Header";
-import DistilleriesInfo from "./components/DistilleriesInfo";
-import DistilleryInfo from "./components/DistilleryInfo";
-import Auction from "./components/Auction";
-import Auctions from "./components/Auctions";
-// import AuctionsInfo from "./components/AuctionsInfo";
+import DataTableWithFilter from "./components/DataTableWithFilter";
 import Footer from "./components/Footer";
+
+// config files
+import { componentConfig as distilleriesConfig } from "./components/config/distilleriesConfig";
+import { componentConfig as auctionsConfig } from "./components/config/auctionsConfig";
+import { componentConfig as distilleryInfoConfig } from "./components/config/distilleryInfo.config";
+import { componentConfig as auctionInfoConfig } from "./components/config/auctionInfoConfig";
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
             <PageLayout
               pageTitle="List of Distilleries"
               pageParagraph="Search and select a distillery name for more information."
-              component={DistilleriesInfo}
+              component={() => (
+                <DataTableWithFilter config={distilleriesConfig} />
+              )}
             />
           }
         />
@@ -37,7 +41,9 @@ function App() {
             <PageLayout
               pageTitle="Distillery Information"
               pageParagraph="Please interact with the data below relating to your selected distillery."
-              component={DistilleryInfo}
+              component={() => (
+                <DataTableWithFilter config={distilleryInfoConfig} />
+              )}
             />
           }
         />
@@ -47,7 +53,7 @@ function App() {
             <PageLayout
               pageTitle="List of Auctions"
               pageParagraph="Search and select an auction name for more information."
-              component={Auctions}
+              component={() => <DataTableWithFilter config={auctionsConfig} />}
             />
           }
         />
@@ -57,7 +63,9 @@ function App() {
             <PageLayout
               pageTitle="Auction Information"
               pageParagraph="Please interact with the data below relating to your selected auction."
-              component={Auction}
+              component={() => (
+                <DataTableWithFilter config={auctionInfoConfig} />
+              )}
             />
           }
         />

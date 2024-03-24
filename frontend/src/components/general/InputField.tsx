@@ -3,6 +3,7 @@ interface InputFieldProps {
   name: string;
   label: string;
   type: string;
+  placeholder?: string;
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   error?: string;
@@ -12,6 +13,7 @@ const InputField: React.FC<InputFieldProps> = ({
   name,
   label,
   type,
+  placeholder,
   value,
   onChange,
   error,
@@ -23,6 +25,7 @@ const InputField: React.FC<InputFieldProps> = ({
         type={type}
         name={name}
         value={value}
+        placeholder={placeholder}
         onChange={onChange}
         className={`shadow appearance-none border ${
           error ? "border-red-500" : ""
