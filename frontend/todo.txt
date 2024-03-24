@@ -6,6 +6,7 @@
 [x] - create search for auctions and distilleries components
 [x] - create react portal to update title of application to display the page you are on
 
+[] - Create another table component that shows the correlation of distilleries and auctions
 [x] - Style input for search
 [x] - format currency to two decimal places and zero decimal places if two decimals are not required
 [] - Create a form that will add a new item to the grid
@@ -17,3 +18,4 @@
 [] - Add active class to nav
 [] - Create documentation
 [] - Look deeper into ag-grid
+[] - Clean up, remove any files that are no longer required.
