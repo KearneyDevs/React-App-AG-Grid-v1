@@ -4,7 +4,6 @@ import "./App.css";
 // Views
 import Home from "./views/Home";
 import PageLayout from "./views/PageLayout";
-import Contact from "./views/Contact";
 
 // Components
 import Header from "./components/Header";
@@ -78,16 +77,6 @@ function App() {
               component={() => (
                 <DataTableWithFilter config={auctionInfoConfig} />
               )}
-            />
-          }
-        />
-        <Route
-          path="/contact"
-          element={
-            <PageLayout
-              pageTitle="Contact"
-              pageParagraph=""
-              component={Contact}
             />
           }
         />

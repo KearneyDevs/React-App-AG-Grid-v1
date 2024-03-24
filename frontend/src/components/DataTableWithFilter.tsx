@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { ColDef } from "ag-grid-community";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import AgDataGrid from "./general/AgDataGrid";
 import useFetch from "../hooks/useFetch";
 import InputField from "./general/InputField";
 import { handleSearch } from "../utils/functions";
+import NewDistilleryForm from "./forms/NewDistilleryForm";
 
 interface IRow {
   [key: string]: string;
@@ -23,6 +24,14 @@ const DataTableWithFilter: React.FC<ComponentProps> = ({ config }) => {
   const { colDefs, searchFields, placeHolder, URL } = config;
 
   const { slug } = useParams<{ slug: string }>();
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  const segments = pathname.split("/");
+  const segment = segments[segments.length - 1];
+
+  console.log(segment);
+
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [filteredData, setFilteredData] = useState<IRow[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -68,6 +77,12 @@ const DataTableWithFilter: React.FC<ComponentProps> = ({ config }) => {
       )}
 
       <AgDataGrid colDefs={colDefs} rowData={filteredData} pagination={true} />
+
+      {segment === "distilleries" ? (
+        <NewDistilleryForm setData={setRowData} data={rowData} />
+      ) : (
+        ""
+      )}
     </>
   );
 };

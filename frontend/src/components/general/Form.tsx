@@ -6,6 +6,7 @@ import {
 } from "../../hooks/useFormValidator";
 import { useFormSubmitter } from "../../hooks/useFormSubmitter";
 import InputField from "./InputField";
+import { handleFormValues } from "../../utils/handleFormValues";
 
 type FormErrors = {
   [key: string]: string | undefined;
@@ -22,9 +23,14 @@ interface Props {
     fields: Record<string, FieldConfig>;
     initialValues: Record<string, string | number>;
   };
+  setData: React.Dispatch<React.SetStateAction<any[]>>;
+  data: any[];
+  handleFormValues?: (
+    values: Record<string, string | number>
+  ) => Record<string, string | number>;
 }
 
-const Form: React.FC<Props> = ({ formConfig }) => {
+const Form: React.FC<Props> = ({ formConfig, setData, data }) => {
   const { schema, fields, initialValues } = formConfig;
   const [formValues, setFormValues] = useState(initialValues);
   const [formErrors, setFormErrors] = useState<FormErrors>({});
@@ -34,22 +40,31 @@ const Form: React.FC<Props> = ({ formConfig }) => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+
     const fieldSchema = schema.shape[name as keyof typeof initialValues];
 
-    const newValue =
+    const parsedValue =
       fieldSchema instanceof ZodNumber ? parseFloat(value) : value;
 
-    setFormValues({ ...formValues, [name]: newValue });
+    setFormValues({ ...formValues, [name]: parsedValue });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const validationResult: ValidationResult = validate(formValues);
+    let updatedFormValues = { ...formValues };
+
+    if (typeof handleFormValues === "function") {
+      updatedFormValues = handleFormValues(updatedFormValues);
+    }
+
+    // Validate the updated form values
+    const validationResult: ValidationResult = validate(updatedFormValues);
+
     if (validationResult.isValid) {
       try {
-        await submit(formValues);
-        console.log("Form submission successful", formValues);
+        await submit(updatedFormValues, setData, data);
+        console.log("Form submission successful", updatedFormValues);
       } catch (error) {
         console.error("Form submission failed", error);
       }

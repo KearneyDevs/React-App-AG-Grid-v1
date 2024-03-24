@@ -31,3 +31,9 @@ export const handleSearch = (
   const filtered = handleFilter(data, value, fields);
   setFilteredDataState(filtered);
 };
+
+export const convertStringToSlug = (input: string): string => {
+  const formattedString = input.toLowerCase().trim();
+  const result = formattedString.replace(/\s+/g, "_");
+  return result;
+};
