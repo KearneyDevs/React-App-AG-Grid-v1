@@ -65,6 +65,8 @@ const Form: React.FC<Props> = ({ formConfig, setData, data }) => {
       try {
         await submit(updatedFormValues, setData, data);
         console.log("Form submission successful", updatedFormValues);
+        setFormValues(initialValues);
+        setFormErrors({});
       } catch (error) {
         console.error("Form submission failed", error);
       }
