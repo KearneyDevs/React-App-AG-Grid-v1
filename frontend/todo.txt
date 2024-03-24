@@ -7,6 +7,7 @@
 [x] - create react portal to update title of application to display the page you are on
 
 [x] - Style input for search
+[x] - format currency to two decimal places and zero decimal places if two decimals are not required
 [] - Create a form that will add a new item to the grid
 [x] - Create a success message component
 [] - Refactor component in distilleriesinfo and auctions

@@ -72,7 +72,6 @@ const DistilleriesInfo = () => {
 
   return (
     <>
-    <Message color="green" message="Form has been submitted successfully!" />
       <input
         className="shadow appearance-none border rounded mb-10 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline md:w-1/2"
         type="text"

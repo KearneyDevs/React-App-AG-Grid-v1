@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
-import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import { formatCurrency } from "../utils/functions";
 
 interface IRow {
   dt: string;
@@ -22,10 +23,6 @@ const DistilleriesInfo = () => {
   const { data, loading, error } = useFetch(
     `http://localhost:3001/api/distillery_data/${slug}`
   );
-
-  const formatCurrency = (params: ValueFormatterParams) => {
-    return "£" + params.value.toLocaleString();
-  };
 
   const colDefs: ColDef[] = [
     { headerName: "Distillery Name", field: "name" },
