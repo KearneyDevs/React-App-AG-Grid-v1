@@ -4,6 +4,7 @@ import { ColDef } from "ag-grid-community";
 import useFetch from "../hooks/useFetch";
 import { convertStringToNumber } from "../utils/functions";
 import customCellRenderer from "../utils/customCellRenderer";
+import Message from "./general/Message";
 
 interface IRow {
   name: string;
@@ -71,8 +72,9 @@ const DistilleriesInfo = () => {
 
   return (
     <>
+    <Message color="green" message="Form has been submitted successfully!" />
       <input
-        className="block text-gray-700 font-bold mb-2"
+        className="shadow appearance-none border rounded mb-10 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline md:w-1/2"
         type="text"
         placeholder="Search by name or country"
         value={searchTerm}
