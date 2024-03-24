@@ -2,11 +2,15 @@
 [x] - Create view pages
 [x] - Create routes for view pages
 [x] - parse string values to numbers in table that require it.
-[] - Create styling for application using tailwind - in progress
-[] - Create documentation
-[] - Add active class to nav
-[] - Look deeper into ag-grid
-
 [x] - update anchors to navlinks and links
 [x] - create search for auctions and distilleries components
 [x] - create react portal to update title of application to display the page you are on
+
+[] - Create a form that will add a new item to the grid
+[] - Refactor component in distilleriesinfo and auctions
+[] - Update colour scheme
+[] - Look in to routes and refactor if needed
+[] - Create styling for application using tailwind - in progress
+[] - Add active class to nav
+[] - Create documentation
+[] - Look deeper into ag-grid
