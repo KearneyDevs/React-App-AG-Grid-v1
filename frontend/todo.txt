@@ -10,8 +10,9 @@
 [x] - Create a success message component
 [x] - Refactor component in distilleriesinfo and auctions
 
-[] - Create another table component that shows the correlation of distilleries and auctions
+
 [] - Create a form that will add a new item to the grid
+[] - Create another table component that shows the correlation of distilleries and auctions
 [] - Update colour scheme
 [] - Look in to routes and refactor if needed
 [] - Create styling for application using tailwind - in progress

@@ -1,33 +1,41 @@
 import { ColDef } from "ag-grid-community";
 import { formatCurrency } from "../../utils/functions";
+import { ValueFormatterParams } from "ag-grid-community";
 
 type ColDefType = ColDef[];
 
 export const componentConfig = {
   colDefs: <ColDefType>[
+    { headerName: "Auction Name", field: "name" },
     {
-      headerName: "Auction",
-      field: "auction_name",
-    },
-    { headerName: "Date", field: "dt" },
-    {
-      headerName: "Highest Winning Bid",
-      field: "winning_bid_max",
-      valueFormatter: formatCurrency,
+      headerName: "Buyers Fee",
+      field: "buyers_fee",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
     },
     {
-      headerName: "Lowest Winning Bid",
-      field: "winning_bid_min",
-      valueFormatter: formatCurrency,
+      headerName: "Sellers Fee",
+      field: "sellers_fee",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
     },
     {
-      headerName: "Average Winning Bid",
-      field: "winning_bid_mean",
-      valueFormatter: formatCurrency,
+      headerName: "Reserve Fee",
+      field: "reserve_fee",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
     },
-    { headerName: "Auction Trading Volume", field: "auction_trading_volume" },
-    { headerName: "Auction Lots Count", field: "auction_lots_count" },
-    { headerName: "All Auctions Lots Count", field: "all_auctions_lots_count" },
+    {
+      headerName: "Listing Fee",
+      field: "listing_fee",
+      valueFormatter: (params: ValueFormatterParams) => {
+        return "£" + params.value.toLocaleString();
+      },
+    },
+    { headerName: "Currency", field: "base_currency" },
   ],
-  URL: "http://localhost:3001/api/auction_data/",
+  URL: "http://localhost:3001/api/auction_info/",
 };

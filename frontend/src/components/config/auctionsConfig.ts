@@ -11,7 +11,7 @@ export const componentConfig = {
       field: "auction_name",
       cellRenderer: customCellRenderer(
         "auction_slug",
-        "/auctions/",
+        "/auctions_info/",
         "auction_name"
       ),
     },

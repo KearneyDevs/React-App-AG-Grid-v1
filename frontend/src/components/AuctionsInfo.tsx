@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AgDataGrid from "./general/AgDataGrid";
 import { ColDef, ValueFormatterParams } from "ag-grid-community";
+import { useParams } from "react-router-dom";
 
 interface IRow {
   name: string;
@@ -14,6 +15,8 @@ interface IRow {
 }
 
 const AuctionsInfo = () => {
+  const { slug } = useParams();
+  console.log(slug);
   const [rowData, setRowData] = useState<IRow[]>([]);
   const [colDefs, setColDefs] = useState<ColDef[]>([
     { headerName: "Auction Name", field: "name" },
@@ -49,7 +52,7 @@ const AuctionsInfo = () => {
   ]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/auctions_info")
+    fetch(`http://localhost:3001/api/auctions_info/${slug}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
