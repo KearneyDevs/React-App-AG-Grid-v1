@@ -1,5 +1,6 @@
 import { ColDef } from "ag-grid-community";
 import { formatCurrency } from "../../utils/functions";
+import { convertStringToNumber } from "../../utils/functions";
 
 type ColDefType = ColDef[];
 
@@ -23,7 +24,11 @@ export const componentConfig = {
       valueFormatter: formatCurrency,
     },
     { headerName: "Trading Vol", field: "trading_volume" },
-    { headerName: "Lots Count", field: "lots_count" },
+    {
+      headerName: "Lots Count",
+      field: "lots_count",
+      valueGetter: convertStringToNumber("lots_count"),
+    },
   ],
   URL: "http://localhost:3001/api/distillery_data/",
 };
