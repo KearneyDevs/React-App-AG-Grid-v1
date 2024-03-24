@@ -76,7 +76,9 @@ function App() {
             <PageLayout
               pageTitle="Auction Information"
               pageParagraph="Please interact with the data below relating to your selected auction."
-              component={() => <AuctionsInfo />}
+              component={() => (
+                <DataTableWithFilter config={auctionInfoConfig} />
+              )}
             />
           }
         />

@@ -14,11 +14,14 @@ const AgDataGrid: React.FC<AgDataGridProps> = ({
   pagination,
 }) => {
   return (
-    <div className="ag-theme-quartz mb-10 w-full h-[500px]">
+    <div className="ag-theme-quartz mb-10 w-full">
       <AgGridReact
         rowData={rowData}
         columnDefs={colDefs}
         pagination={pagination}
+        domLayout={"autoHeight"}
+        paginationPageSize={20}
+        paginationPageSizeSelector={[10, 20, 50, 100]}
       />
     </div>
   );

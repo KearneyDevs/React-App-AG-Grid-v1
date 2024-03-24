@@ -20,7 +20,7 @@ const PageLayout: React.FC<DistilleryInformationProps> = ({
   }, [pageTitle]);
 
   return (
-    <div className="container flex flex-col px-4 mx-auto mt-10">
+    <div className="container flex flex-col px-4 mx-auto mt-10 min-h-screen">
       <h2 className="max-w-md text-4xl font-bold mb-5">{pageTitle}</h2>
 
       {pageParagraph && (

@@ -10,32 +10,24 @@ export const componentConfig = {
     {
       headerName: "Buyers Fee",
       field: "buyers_fee",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Sellers Fee",
       field: "sellers_fee",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Reserve Fee",
       field: "reserve_fee",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     {
       headerName: "Listing Fee",
       field: "listing_fee",
-      valueFormatter: (params: ValueFormatterParams) => {
-        return "£" + params.value.toLocaleString();
-      },
+      valueFormatter: formatCurrency,
     },
     { headerName: "Currency", field: "base_currency" },
   ],
-  URL: "http://localhost:3001/api/auction_info/",
+  URL: "http://localhost:3001/api/auctions_info/",
 };
