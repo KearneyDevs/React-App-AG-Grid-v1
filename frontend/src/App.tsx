@@ -16,7 +16,6 @@ import { componentConfig as distilleriesConfig } from "./components/config/disti
 import { componentConfig as auctionsConfig } from "./components/config/auctionsConfig";
 import { componentConfig as distilleryInfoConfig } from "./components/config/distilleryInfo.config";
 import { componentConfig as auctionInfoConfig } from "./components/config/auctionInfoConfig";
-import AuctionsInfo from "./components/AuctionsInfo";
 
 function App() {
   return (
